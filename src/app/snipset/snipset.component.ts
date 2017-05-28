@@ -14,12 +14,14 @@ import 'rxjs/add/operator/debounceTime';
 
 
 import { Newbie } from './newbie.class';
+import { Hofun } from './hofun';
+import { SpreadOp } from './spreadop';
 
 export interface IfunItems {
-    purpose: string;
-    res?: any;
-    fn?: string;
-    parms?: string;
+  purpose: string;
+  res?: any;
+  fn?: string;
+  parms?: string;
 }
 
 
@@ -53,11 +55,11 @@ export class SnipsetComponent implements OnInit {
 
   filterOnCol(colName, search): number {
     const mioSearchTxt = search.toLocaleLowerCase();
-   
+
     switch (colName) {
       case 'purpose':
         this.filteredItems = this.getData()
-             .filter((res) => res.purpose.toLowerCase().includes(mioSearchTxt));
+          .filter((res) => res.purpose.toLowerCase().includes(mioSearchTxt));
         break;
 
       default:
@@ -67,9 +69,9 @@ export class SnipsetComponent implements OnInit {
     return this.filteredItems.length;
   }
 
-  private getData():IfunItems[] {
-  
-     return  this.sco;
+  private getData(): IfunItems[] {
+
+    return this.sco;
   }
 
   // ./end of main functions
@@ -142,7 +144,58 @@ export class SnipsetComponent implements OnInit {
         parms: `this.fn0('Matteo', 'ES6 syntax');`
       });
 
-this.filteredItems = this.getData();
+    // ******
+    const hof = new Hofun();
+    this.sco.push(
+      {
+        purpose: `High order function call a function with a function. callAndReturn(add(a,b)) `,
+        res: hof.callAndReturn(hof.add(2, 8)),
+        fn: hof.add.toString(),
+        parms: `callAndReturn(add(a,b));`
+      });
+
+
+    const sop = new SpreadOp();
+
+    this.sco.push(
+      {
+        purpose: `ES6 Spread operator adding middle array to an array `,
+        res: sop.opFunSw('middle'),
+        fn: sop.middle.toString() + ' middle array values',
+        parms: `external class called: sop.opFunSw('middle'); //uses a switch with action method`
+      });
+
+    this.sco.push(
+      {
+        purpose: `ES6 Spread operator concat arrays `,
+        res: sop.opFunSw('concat'),
+        fn: `concat arr = ['a', 'b', 'c'];
+                to arr2 = ['d', 'e', 'f'];`,
+        parms: `external class called: sop.opFunSw('concat'); `
+      });
+
+    // mathMax
+    this.sco.push(
+      {
+        purpose: `ES6 Spread operator using math and max from array `,
+        res: sop.opFunSw('mathMax'),
+        fn: `get max arr = [2, 4, 8, 6, 0]; Math.max(...arr);`,
+        parms: `external class called: sop.opFunSw('mathMax'); `
+      });
+      //stringToArray
+       this.sco.push(
+      {
+        purpose: `Uses Array.from(str) to create array from a string value `,
+        res: sop.opFunSw('stringToArray'),
+        fn: `from string to array`,
+        parms: `external class called: sop.opFunSw('stringToArray'); `
+      });
+
+
+
+
+    // ** required on init to set filtered items array with data
+    this.filteredItems = this.getData();
     // end of demo calls
   }
 
