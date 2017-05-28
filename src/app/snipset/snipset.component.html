@@ -1,0 +1,20 @@
+<div>
+    <h2>{{mioVersion}}</h2>
+    <!--<h4>Hello ES6 {{nameES6}}</h4>
+    <h5>Scope {{sco | json}}</h5>-->
+
+</div>
+
+<span>
+  <em>Functions have been converted to ES5 for the browser.</em> 
+</span>
+
+<ul>
+    <li *ngFor="let item of sco; let i = index;" #listItems>
+        <div><strong>Purpose:</strong> {{item.purpose}}</div>
+        <div><strong>Function call:</strong> {{item.parms}}</div>
+        <div><strong>Function (toString):</strong> {{item.fn}}</div>
+        <div><strong>Results:</strong> {{item.res}}</div>
+        <br/>
+    </li>
+</ul>
