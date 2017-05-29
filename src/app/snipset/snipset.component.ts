@@ -38,7 +38,9 @@ export class SnipsetComponent implements OnInit {
   public sco: IfunItems[] = [];
   public a = 'uno';
   public b = 0;
-
+  
+  private toggleDetails:boolean = false;
+  private toggleDetailsText:string =  'Show details';
   private filteredItems: IfunItems[] = [];
   private hello = 'hello';
 
@@ -46,6 +48,11 @@ export class SnipsetComponent implements OnInit {
     this.mioVersion = `Angular! v${VERSION.full}`;
   }
   // main program functions
+
+  onToggleDetails(e:Event) {
+    this.toggleDetails = !this.toggleDetails;
+    this.toggleDetailsText = this.toggleDetails ? 'Hide details' : 'Show details';
+  }
 
   onSearch(search: string): void {
     // case-insensitive search
