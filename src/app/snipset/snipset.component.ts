@@ -39,10 +39,10 @@ export class SnipsetComponent implements OnInit {
   public a = 'uno';
   public b = 0;
   
-  private toggleDetails:boolean = false;
-  private toggleDetailsText:string =  'Show details';
-  private filteredItems: IfunItems[] = [];
-  private hello = 'hello';
+  public toggleDetails:boolean = false;
+  public toggleDetailsText:string =  'Show details';
+  public filteredItems: IfunItems[] = [];
+  public hello = 'hello';
 
   constructor() {
     this.mioVersion = `Angular! v${VERSION.full}`;
