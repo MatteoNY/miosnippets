@@ -7,8 +7,8 @@
                 <div class="col-md-3 col-lg-4 col-sm-3 col-xs-1" style="margin-bottom: 10px;">
                     <input #searchText class="form-control" type="text" placeholder="Enter keyword" id="search-input" (keyup)="onSearch(searchText.value)">
 
-                    <input #tDetails id="tDetails" type="checkbox" (change)="onToggleDetails($event)">
-                    <label for="tDetails">{{toggleDetailsText}}</label>
+                    <button #tDetails class="btn btn-primary" type="button" (click)="onToggleDetails($event)">{{toggleDetailsText}}</button>
+
                 </div>
             </div>
             <div class="row">
